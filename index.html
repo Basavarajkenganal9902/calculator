@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#14532d" />
+  <meta name="description" content="Kenganal Calculator — a simple, dependable calculator." />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="header">
+      <div class="brand-icon" aria-hidden="true">▦</div>
+      <div class="brand-copy">
+        <h1>calculator</h1>
+        <p>A little math, made easy</p>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <span id="theme-icon" aria-hidden="true">☾</span>
+        <span id="theme-label">Dark mode</span>
+      </button>
+    </header>
+
+    <section class="display-card" aria-label="Calculator display">
+      <div id="display-label" class="display-eyebrow">YOUR EXPRESSION</div>
+      <div id="expression" class="expression" aria-live="polite">0</div>
+      <div class="result-row">
+        <span class="result-marker" aria-hidden="true"></span>
+        <div id="result" class="result" aria-live="polite">0</div>
+      </div>
+    </section>
+
+    <section class="keypad-area">
+      <div class="keypad-heading">
+        <h2>Calculator</h2>
+        <p>Ready when you are</p>
+      </div>
+      <div class="keypad" id="keypad" aria-label="Calculator keys">
+        <button class="key action" data-key="AC">AC</button>
+        <button class="key action" data-key="%">%</button>
+        <button class="key action" data-key="backspace" aria-label="Backspace">⌫</button>
+        <button class="key operator" data-key="÷">÷</button>
+
+        <button class="key" data-key="7">7</button>
+        <button class="key" data-key="8">8</button>
+        <button class="key" data-key="9">9</button>
+        <button class="key operator" data-key="×">×</button>
+
+        <button class="key" data-key="4">4</button>
+        <button class="key" data-key="5">5</button>
+        <button class="key" data-key="6">6</button>
+        <button class="key operator" data-key="−">−</button>
+
+        <button class="key" data-key="1">1</button>
+        <button class="key" data-key="2">2</button>
+        <button class="key" data-key="3">3</button>
+        <button class="key operator" data-key="+">+</button>
+
+        <button class="key zero" data-key="0">0</button>
+        <button class="key" data-key="00">00</button>
+        <button class="key" data-key=".">.</button>
+        <button class="key equals" data-key="=">=</button>
+      </div>
+    </section>
+    <footer>The simple way to figure it out.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

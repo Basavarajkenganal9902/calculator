@@ -1,0 +1,371 @@
+* { box-sizing: border-box; }
+:root {
+  color-scheme: light;
+  --primary: #14532d;
+  --accent: #22c55e;
+  --background: #f0fdf4;
+  --card: #dcfce7;
+  --text-primary: #14532d;
+  --text-secondary: #15803d;
+  --border: #dae2da;
+  --key-background: #f2f4ef;
+  --operator-background: #e5ede8;
+  --shadow: 0 18px 55px rgba(20, 83, 45, .08);
+}
+body.dark {
+  color-scheme: dark;
+  --primary: #a8d5c2;
+  --accent: #f2ad70;
+  --background: #17211d;
+  --card: #24312b;
+  --text-primary: #f0f5f1;
+  --text-secondary: #aab8af;
+  --border: #3a4a41;
+  --key-background: #2d3b34;
+  --operator-background: #35483e;
+  --shadow: 0 18px 55px rgba(0, 0, 0, .15);
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: grid;
+  place-items: center;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: background .2s ease, color .2s ease;
+}
+.app-shell { width: min(100%, 440px); }
+.header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.brand-icon {
+  flex: 0 0 48px; width: 48px; height: 48px; border-radius: 16px;
+  display: grid; place-items: center; background: var(--primary); color: var(--card);
+  font-size: 27px; font-weight: 700;
+}
+.brand-copy { min-width: 0; flex: 1; }
+h1 { font-size: 20px; line-height: 1.2; margin: 0; font-weight: 750; letter-spacing: -.4px; }
+.brand-copy p { margin: 5px 0 0; color: var(--text-secondary); font-size: 13px; }
+.theme-toggle {
+  border: 1px solid var(--border); background: var(--operator-background); color: var(--text-primary);
+  border-radius: 999px; padding: 8px 11px; display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;
+}
+.display-card {
+  min-height: 184px; padding: 20px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--card); display: flex; flex-direction: column; align-items: flex-end;
+  justify-content: space-between; gap: 16px; margin-bottom: 28px; box-shadow: var(--shadow);
+}
+.display-eyebrow { width: 100%; color: var(--text-secondary); font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.expression {
+  width: 100%; min-height: 36px; overflow-wrap: anywhere; text-align: right;
+  font-size: clamp(23px, 6vw, 29px); font-weight: 400; font-variant-numeric: tabular-nums;
+}
+.result-row { display: flex; align-items: center; justify-content: flex-end; width: 100%; gap: 12px; }
+.result-marker { width: 4px; height: 32px; flex: 0 0 4px; border-radius: 999px; background: var(--accent); }
+.result { max-width: calc(100% - 16px); overflow-wrap: anywhere; text-align: right; font-size: clamp(30px, 9vw, 42px); font-weight: 650; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.keypad-heading { display: flex; align-items: center; justify-content: space-between; margin: 0 4px 12px; gap: 8px; }
+.keypad-heading h2 { margin: 0; font-size: 20px; font-weight: 650; }
+.keypad-heading p { margin: 0; color: var(--text-secondary); font-size: 13px; }
+.keypad { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 12px; border-radius: 20px; background: var(--card); border: 1px solid var(--border); }
+.key {
+  min-width: 0; min-height: 60px; border: 0; border-radius: 12px; background: var(--key-background);
+  color: var(--text-primary); font: inherit; font-size: 25px; font-weight: 650; cursor: pointer;
+  transition: transform .08s ease, filter .15s ease, background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.key:hover { filter: brightness(.97); }
+.key:active { transform: scale(.96); }
+.key.operator { background: var(--operator-background); }
+.key.action { background: var(--operator-background); color: var(--primary); font-size: 18px; font-weight: 750; }
+.key.equals { background: var(--accent); color: #173222; font-size: 28px; font-weight: 800; }
+body.dark .key.equals { color: #2d2117; }
+.key.zero { grid-column: span 1; }
+footer { text-align: center; margin-top: 16px; color: var(--text-secondary); font-size: 13px; }
+@media (max-width: 360px) {
+  body { padding: 16px 10px; }
+  .header { gap: 8px; }
+  .brand-icon { width: 42px; height: 42px; flex-basis: 42px; border-radius: 13px; }
+  h1 { font-size: 17px; }
+  .theme-toggle { padding: 7px 8px; }
+  .keypad { gap: 6px; padding: 9px; }
+  .key { min-height: 54px; }
+  .display-card { padding: 16px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Compact layout for desktop and laptop screens */
+@media (min-width: 600px) and (min-height: 650px) {
+  body {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .display-card {
+    min-height: 150px;
+    padding: 16px 20px;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .keypad-heading {
+    margin-bottom: 8px;
+  }
+
+  .keypad {
+    padding: 10px;
+    gap: 7px;
+  }
+
+  .key {
+    min-height: 52px;
+  }
+
+  footer {
+    margin-top: 10px;
+  }
+}
+
+/* Extra compact for shorter laptop windows */
+@media (min-width: 600px) and (max-height: 800px) {
+  .header {
+    margin-bottom: 12px;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .display-card {
+    min-height: 130px;
+    margin-bottom: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .key {
+    min-height: 46px;
+  }
+
+  .keypad {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  footer {
+    margin-top: 8px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Fit calculator within the mobile screen */
+@media (max-width: 599px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-shell {
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    height: 100dvh;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .header {
+    flex-shrink: 0;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    border-radius: 12px;
+    font-size: 22px;
+  }
+
+  h1 {
+    font-size: 17px;
+  }
+
+  .brand-copy p {
+    margin-top: 3px;
+    font-size: 11px;
+  }
+
+  .theme-toggle {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .display-card {
+    flex-shrink: 0;
+    min-height: 0;
+    height: clamp(105px, 20dvh, 150px);
+    padding: 12px;
+    gap: 6px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+  }
+
+  .display-eyebrow {
+    font-size: 9px;
+  }
+
+  .expression {
+    min-height: 24px;
+    font-size: clamp(20px, 5vw, 26px);
+  }
+
+  .result-marker {
+    height: 25px;
+  }
+
+  .result {
+    font-size: clamp(27px, 8vw, 36px);
+  }
+
+  .keypad-area {
+    flex-shrink: 1;
+    min-height: 0;
+  }
+
+  .keypad-heading {
+    margin: 0 3px 7px;
+  }
+
+  .keypad-heading h2 {
+    font-size: 17px;
+  }
+
+  .keypad-heading p {
+    font-size: 11px;
+  }
+
+  .keypad {
+    padding: 7px;
+    gap: 5px;
+    border-radius: 16px;
+  }
+
+  .key {
+    min-height: 0;
+    height: clamp(34px, 7.5dvh, 52px);
+    border-radius: 9px;
+    font-size: 21px;
+  }
+
+  .key.action {
+    font-size: 15px;
+  }
+
+  .key.equals {
+    font-size: 24px;
+  }
+
+  footer {
+    flex-shrink: 0;
+    margin-top: 7px;
+    font-size: 11px;
+  }
+}
+
+/* Extra-small or short phones */
+@media (max-width: 599px) and (max-height: 650px) {
+  .app-shell {
+    padding: 5px 10px;
+  }
+
+  .header {
+    margin-bottom: 6px;
+  }
+
+  .display-card {
+    height: 90px;
+    padding: 8px 10px;
+    margin-bottom: 7px;
+    gap: 3px;
+  }
+
+  .keypad-heading {
+    margin-bottom: 4px;
+  }
+
+  .keypad {
+    gap: 4px;
+    padding: 5px;
+  }
+
+  .key {
+    height: clamp(30px, 6.5dvh, 42px);
+    border-radius: 7px;
+    font-size: 18px;
+  }
+
+  footer {
+    margin-top: 4px;
+    font-size: 10px;
+  }
+}
